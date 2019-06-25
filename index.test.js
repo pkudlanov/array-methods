@@ -1,4 +1,9 @@
-const { mapClone, filterClone, findIndexClone } = require('./index');
+const { 
+  mapClone,
+  filterClone,
+  findIndexClone,
+  reduceClone
+} = require('./index');
 
 const fib = [3, 5, 8, 13, 21, 34];
 
@@ -35,7 +40,7 @@ describe('testing filterClone function', () => {
 describe('testing findIndexClone', () => {
   it('returns a number', () => {
     const result = findIndexClone(fib, num => num % 2 === 0);
-    expect(typeof result).toEqual(typeof 3);
+    expect(result).toEqual(expect.any(Number));
   });
 
   it('returns index of first true callback value', () => {
@@ -46,5 +51,20 @@ describe('testing findIndexClone', () => {
   it('returns -1 if there is no true instance for callback condition', () => {
     const result = findIndexClone(fib, num => num % 27 === 0);
     expect(result).toEqual(-1);
+  });
+});
+
+describe('testing the reduce clone function', () => {
+  it('iterates through and arry and invokes the callback', () => {
+    const callback = jest.fn();
+
+    reduceClone(fib, callback, 0);
+
+    expect(callback).toHaveBeenCalledTimes(fib.length);
+  });
+  it('iterates through an array and sets updates the acc with result of callback', () => {
+    const sum = reduceClone(fib, (acc, item) => acc + item, 0);
+
+    expect(sum).toEqual(84);
   });
 });

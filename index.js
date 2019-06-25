@@ -4,6 +4,7 @@ const fib = [3, 5, 8, 13, 21, 34];
 const maped = fib.map(num => num * 2); // map functionality
 const even = fib.filter(num => num % 2 === 0); // filter functionality
 const num = fib.findIndex(num => num % 2 === 0); // findIndex functionality
+const numb = fib.reduce(num => num )
 
 // console.log(maped);
 // console.log(even);
@@ -29,23 +30,33 @@ function filterClone(arr, callback) {
   return filteredArr;
 }
 
-// it returns number
-// itterate over array
-// * if the item is good return index
-// * if item is bad continue
-// return -1 if no matches found
 function findIndexClone(arr, callback) {
   for (let i = 0; i < arr.length; i++) {
-    const num = arr[i];
-    if(callback(num)) {
-      return i;
-    };
+    if(callback(arr[i])) return i;
   };
   return -1;
+}
+
+// iterate through every item and invokes the 'callback'
+// with an 'iniialValue' iterate through the array and set the 'acc' to the result of 'callback'
+// without an 'initialValue' the acc starts off as the first item in array
+
+function reduceClone(arr, callback, initialValue) {
+  let acc = initialValue;
+  let i = 0;
+  if(initialValue === undefined) {
+    i = 1;
+    acc = arr[0];
+  }
+  for (i; i < arr.length; i++) {
+    acc = callback(acc, arr[i]);
+  }
+  return acc;
 }
 
 module.exports = {
   mapClone,
   filterClone,
-  findIndexClone
+  findIndexClone,
+  reduceClone
 }
