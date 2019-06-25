@@ -42,4 +42,9 @@ describe('testing findIndexClone', () => {
     const result = findIndexClone(fib, num => num % 2 === 0);
     expect(result).toEqual(2);
   });
+
+  it('returns -1 if there is no true instance for callback condition', () => {
+    const result = findIndexClone(fib, num => num % 27 === 0);
+    expect(result).toEqual(-1);
+  });
 });

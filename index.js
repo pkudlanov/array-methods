@@ -41,6 +41,7 @@ function findIndexClone(arr, callback) {
       return i;
     };
   };
+  return -1;
 }
 
 module.exports = {
