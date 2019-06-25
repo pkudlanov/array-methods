@@ -13,7 +13,7 @@ function mapClone(arr, callback) {
   const newArr = [];
   for (let i = 0; i < arr.length; i++) {
     newArr[i] = callback(arr[i]);
-  }
+  };
   return newArr;
 }
 
@@ -24,8 +24,8 @@ function filterClone(arr, callback) {
     if(callback(arr[i])) {
       filteredArr[j] = arr[i];
       j++;
-    }
-  }
+    };
+  };
   return filteredArr;
 }
 
@@ -35,8 +35,12 @@ function filterClone(arr, callback) {
 // * if item is bad continue
 // return -1 if no matches found
 function findIndexClone(arr, callback) {
-  const index = 2;
-  return index;
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+    if(callback(num)) {
+      return i;
+    };
+  };
 }
 
 module.exports = {

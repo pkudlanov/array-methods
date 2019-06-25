@@ -37,4 +37,9 @@ describe('testing findIndexClone', () => {
     const result = findIndexClone(fib, num => num % 2 === 0);
     expect(typeof result).toEqual(typeof 3);
   });
+
+  it('returns index of first true callback value', () => {
+    const result = findIndexClone(fib, num => num % 2 === 0);
+    expect(result).toEqual(2);
+  });
 });
